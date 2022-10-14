@@ -28,13 +28,13 @@ Clone the project
 Go to the project directory
 
 ```bash
-  cd my-project
+  cd eBakery-Frontend
 ```
 
 Install dependencies
 
 ```bash
-  yarn or nom i
+  yarn or npm i
 ```
 
 Start the server
