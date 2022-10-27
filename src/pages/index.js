@@ -1,15 +1,16 @@
+import { Categories } from 'components/Categories';
+import Layout from 'components/Layout/Layout';
 import { NavBar } from 'components/Layout/NavBar';
 import { Welcome } from 'components/Welcome/Welcome';
-import { ColorSchemeToggle } from 'components/ColorSchemeToggle/ColorSchemeToggle';
-import Layout from 'components/Layout/Layout';
 
 export default function HomePage() {
-  return (
-    <>
-      <NavBar />
-      <Layout>
-        <Welcome />
-      </Layout>
-    </>
-  );
+	return (
+		<>
+			<NavBar />
+			<Layout>
+				<Categories />
+				<Welcome />
+			</Layout>
+		</>
+	);
 }
