@@ -78,10 +78,6 @@ export const ProductCard = () => {
                 </Group>
             </Group>
 
-            <Text size="sm" color="dimmed" mt="sm">
-                Relax, rejuvenate and unplug in this unique contemporary Birdbox. Feel close to nature in
-                ultimate comfort. Enjoy the view of the epic mountain range of Blegja and the Førdefjord.
-            </Text>
 
             <Group position="apart" mt="md">
                 <div>
