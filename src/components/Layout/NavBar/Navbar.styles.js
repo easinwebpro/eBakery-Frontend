@@ -1,6 +1,42 @@
 import { createStyles } from '@mantine/core';
 
 export const useStyles = createStyles((theme) => ({
+    menu_wrapper: {
+        display: 'flex',
+        alignItems: 'center',
+        margin: '10px 0px',
+        [theme.fn.smallerThan('sm')]: {
+            padding: '13px 0px',
+            margin: '0 !important'
+        },
+    },
+    logo_wrapper: {
+        width: '20%',
+        [theme.fn.smallerThan('sm')]: {
+            width: '50%',
+        },
+        h3: {
+            margin: 0,
+            [theme.fn.smallerThan('sm')]: {
+                textAlign: 'center',
+            },
+        },
+
+    },
+    search_bar: {
+        width: '70%',
+    },
+    profile: {
+        width: '30%',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'end',
+    },
+    mobile_menu: {
+        width: '20%',
+        display: 'flex',
+        justifyContent: 'start',
+    },
     link: {
         display: 'flex',
         alignItems: 'center',
@@ -48,13 +84,13 @@ export const useStyles = createStyles((theme) => ({
 
     hiddenMobile: {
         [theme.fn.smallerThan('sm')]: {
-            display: 'none',
+            display: 'none !important',
         },
     },
 
     hiddenDesktop: {
         [theme.fn.largerThan('sm')]: {
-            display: 'none',
+            display: 'none !important',
         },
     },
 }));
