@@ -25,6 +25,7 @@ export const useStyles = createStyles((theme) => ({
     },
     search_bar: {
         width: '70%',
+        textAlign: 'center',
     },
     profile: {
         width: '30%',
@@ -37,6 +38,23 @@ export const useStyles = createStyles((theme) => ({
         display: 'flex',
         justifyContent: 'start',
     },
+
+    smart_scroll: {
+        position: 'fixed',
+        marginBottom: '10px',
+        top: '0',
+        right: '0',
+        left: '0',
+        zIndex: '1030',
+        boxShadow: '0 8px 20px 0 rgb(0 0 0 / 5%)'
+    },
+    scrolled_down: {
+        transform: 'translateY(-100%), transition: all 0.3s ease-in-out',
+    },
+    scrolled_up: {
+        transform: 'translateY(0), transition: all 0.3s ease-in-out'
+    },
+
     link: {
         display: 'flex',
         alignItems: 'center',

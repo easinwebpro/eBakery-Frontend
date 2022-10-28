@@ -1,73 +1,26 @@
-import { Header, Grid, Menu, Avatar, Group, Button, UnstyledButton, Text, SimpleGrid, ThemeIcon, Anchor, Divider, Center, Box, Burger, Drawer, Collapse, ScrollArea, Container } from '@mantine/core';
+import { useState, useEffect } from 'react';
+import { Header, Menu, Avatar, Group, Button, UnstyledButton, Divider, Box, Burger, Drawer, Collapse, ScrollArea, Container } from '@mantine/core';
 
-import { useDisclosure } from '@mantine/hooks';
-import { IconNotification, IconCode, IconBook, IconChartPie3, IconFingerprint, IconCoin, IconChevronDown, IconSearch, IconUserPlus, IconAssembly } from '@tabler/icons';
+import { useDisclosure, useMediaQuery } from '@mantine/hooks';
+import { IconUserPlus, IconAssembly } from '@tabler/icons';
 
-import { ColorSchemeToggle } from '../../ColorSchemeToggle/ColorSchemeToggle';
+import { ColorSchemeToggle } from '../../../ColorSchemeToggle/ColorSchemeToggle';
 import { useStyles } from './Navbar.styles';
-import { SearchBar } from './Search';
+import { SearchBar } from '../Search';
+import { useStickNav } from 'hooks/useStickNav';
 
-const mockdata = [
-    {
-        icon: IconCode,
-        title: 'Open source',
-        description: 'This Pokémon’s cry is very loud and distracting',
-    },
-    {
-        icon: IconCoin,
-        title: 'Free for everyone',
-        description: 'The fluid of Smeargle’s tail secretions changes',
-    },
-    {
-        icon: IconBook,
-        title: 'Documentation',
-        description: 'Yanma is capable of seeing 360 degrees without',
-    },
-    {
-        icon: IconFingerprint,
-        title: 'Security',
-        description: 'The shell’s rounded shape and the grooves on its.',
-    },
-    {
-        icon: IconChartPie3,
-        title: 'Analytics',
-        description: 'This Pokémon uses its flying ability to quickly chase',
-    },
-    {
-        icon: IconNotification,
-        title: 'Notifications',
-        description: 'Combusken battles with the intensely hot flames it spews',
-    },
-];
+export const MainMenu = () => {
 
-export const NavBar = () => {
-
+    const scroll = useStickNav();
     const [drawerOpened, { toggle: toggleDrawer, close: closeDrawer }] = useDisclosure(false);
     const [linksOpened, { toggle: toggleLinks }] = useDisclosure(false);
+    const matches = useMediaQuery('(max-width: 766px)');
     const { classes, theme } = useStyles();
-
-    const links = mockdata.map((item) => (
-        <UnstyledButton className={classes.subLink} key={item.title}>
-            <Group noWrap align="flex-start">
-                <ThemeIcon size={34} variant="default" radius="md">
-                    <item.icon size={22} color={theme.fn.primaryColor()} />
-                </ThemeIcon>
-                <div>
-                    <Text size="sm" weight={500}>
-                        {item.title}
-                    </Text>
-                    <Text size="xs" color="dimmed">
-                        {item.description}
-                    </Text>
-                </div>
-            </Group>
-        </UnstyledButton>
-    ));
 
     return (
         <Box>
 
-            <Header height={60} px="md">
+            <Header height={60} px="md" className={`${matches && scroll === true ? classes.smart_scroll : classes.scrolled_up}`}>
                 <Container size="97%">
                     <div className={classes.menu_wrapper}>
                         <div className={`${classes.mobile_menu} ${classes.hiddenDesktop}`}>
@@ -78,7 +31,7 @@ export const NavBar = () => {
                             <h3>Mantine UI </h3>
                         </div>
 
-                        <div sm={{ height: '100%' }} className={`${classes.search_bar} ${classes.hiddenMobile} `}>
+                        <div className={`${classes.search_bar} ${classes.hiddenMobile} `}>
                             <SearchBar />
                         </div>
 
@@ -115,7 +68,7 @@ export const NavBar = () => {
                 onClose={closeDrawer}
                 size="75%"
                 padding="md"
-                title=""
+                title="Mantine UI"
                 className={classes.hiddenDesktop}
                 overlayColor={theme.colorScheme === 'dark' ? theme.colors.dark[9] : theme.colors.gray[2]}
                 overlayOpacity={0.55}
@@ -128,15 +81,6 @@ export const NavBar = () => {
                     <a href="#" className={classes.link}>
                         Home
                     </a>
-                    <UnstyledButton className={classes.link} onClick={toggleLinks}>
-                        <Center inline>
-                            <Box component="span" mr={5}>
-                                Features
-                            </Box>
-                            <IconChevronDown size={16} color={theme.fn.primaryColor()} />
-                        </Center>
-                    </UnstyledButton>
-                    <Collapse in={linksOpened}>{links}</Collapse>
                     <a href="#" className={classes.link}>
                         Learn
                     </a>
