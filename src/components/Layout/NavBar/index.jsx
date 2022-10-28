@@ -1,27 +1,11 @@
-import {
-    Header,
-    HoverCard,
-    Group,
-    Button,
-    UnstyledButton,
-    Text,
-    SimpleGrid,
-    ThemeIcon,
-    Anchor,
-    Divider,
-    Center,
-    Box,
-    Burger,
-    Drawer,
-    Collapse,
-    ScrollArea,
-    Container
-} from '@mantine/core';
-import { useDisclosure } from '@mantine/hooks';
-import { IconNotification, IconCode, IconBook, IconChartPie3, IconFingerprint, IconCoin, IconChevronDown, } from '@tabler/icons';
-import { useStyles } from './Navbar.styles';
+import { Header, Grid, Menu, Avatar, Group, Button, UnstyledButton, Text, SimpleGrid, ThemeIcon, Anchor, Divider, Center, Box, Burger, Drawer, Collapse, ScrollArea, Container } from '@mantine/core';
 
-import { ColorSchemeToggle } from '../../ColorSchemeToggle/ColorSchemeToggle'
+import { useDisclosure } from '@mantine/hooks';
+import { IconNotification, IconCode, IconBook, IconChartPie3, IconFingerprint, IconCoin, IconChevronDown, IconSearch, IconUserPlus, IconAssembly } from '@tabler/icons';
+
+import { ColorSchemeToggle } from '../../ColorSchemeToggle/ColorSchemeToggle';
+import { useStyles } from './Navbar.styles';
+import { SearchBar } from './Search';
 
 const mockdata = [
     {
@@ -81,93 +65,65 @@ export const NavBar = () => {
     ));
 
     return (
-        <Box pb={120}>
+        <Box>
+
             <Header height={60} px="md">
                 <Container size="97%">
-                    <Group position="apart" sx={{ height: '100%' }}>
-                        <h3>Mantine UI </h3>
+                    <div className={classes.menu_wrapper}>
+                        <div className={`${classes.mobile_menu} ${classes.hiddenDesktop}`}>
+                            <Burger opened={drawerOpened} onClick={toggleDrawer} className={classes.hiddenDesktop} />
+                        </div>
 
-                        <Group sx={{ height: '100%' }} spacing={0} className={classes.hiddenMobile}>
-                            <a href="#" className={classes.link}>
-                                Home
-                            </a>
-                            <HoverCard width={600} position="bottom" radius="md" shadow="md" withinPortal>
-                                <HoverCard.Target>
-                                    <a href="#" className={classes.link}>
-                                        <Center inline>
-                                            <Box component="span" mr={5}>
-                                                Features
-                                            </Box>
-                                            <IconChevronDown size={16} color={theme.fn.primaryColor()} />
-                                        </Center>
-                                    </a>
-                                </HoverCard.Target>
+                        <div className={classes.logo_wrapper}>
+                            <h3>Mantine UI </h3>
+                        </div>
 
-                                <HoverCard.Dropdown sx={{ overflow: 'hidden' }}>
-                                    <Group position="apart" px="md">
-                                        <Text weight={500}>Features</Text>
-                                        <Anchor href="#" size="xs">
-                                            View all
-                                        </Anchor>
-                                    </Group>
+                        <div sm={{ height: '100%' }} className={`${classes.search_bar} ${classes.hiddenMobile} `}>
+                            <SearchBar />
+                        </div>
 
-                                    <Divider
-                                        my="sm"
-                                        mx="-md"
-                                        color={theme.colorScheme === 'dark' ? 'dark.5' : 'gray.1'}
-                                    />
+                        <div className={` ${classes.profile} `}>
 
-                                    <SimpleGrid cols={2} spacing={0}>
-                                        {links}
-                                    </SimpleGrid>
+                            <div style={{ marginRight: '20px', }}>
+                                <ColorSchemeToggle />
+                            </div>
 
-                                    <div className={classes.dropdownFooter}>
-                                        <Group position="apart">
-                                            <div>
-                                                <Text weight={500} size="sm">
-                                                    Get started
-                                                </Text>
-                                                <Text size="xs" color="dimmed">
-                                                    Their food sources have decreased, and their numbers
-                                                </Text>
-                                            </div>
-                                            <Button variant="default">Get started</Button>
-                                        </Group>
-                                    </div>
-                                </HoverCard.Dropdown>
-                            </HoverCard>
-                            <a href="#" className={classes.link}>
-                                Learn
-                            </a>
-                            <a href="#" className={classes.link}>
-                                Academy
-                            </a>
-                        </Group>
+                            <Menu withArrow shadow="md" width={180}>
+                                <Menu.Target>
+                                    <Avatar radius="xl" src="https://scontent.fcgp25-1.fna.fbcdn.net/v/t1.6435-9/186938083_2843672705892625_8187455433643123345_n.jpg?_nc_cat=110&ccb=1-7&_nc_sid=09cbfe&_nc_eui2=AeHCKHRvPn79lNruhW8J-weVEdmFCowLZJUR2YUKjAtklU-XCJRN7oZH2m6O0HsChye2Kk23vjfDDX4KakuR0mli&_nc_ohc=WeRovMghYTgAX8KxpjI&_nc_ht=scontent.fcgp25-1.fna&oh=00_AfCQNnfGYBgALvfmjtdQoiJ_zQyO8RxzBFteIkl0_SRDug&oe=637F5822" alt="it's me" />
+                                </Menu.Target>
 
-                        <Group className={classes.hiddenMobile}>
-                            <ColorSchemeToggle />
-                            <Button variant="default">Log in</Button>
-                            <Button>Sign up</Button>
+                                <Menu.Dropdown>
+                                    <Menu.Item icon={<IconAssembly size={20} />} >
+                                        <b>Signin</b>
+                                    </Menu.Item>
+                                    <Menu.Item icon={<IconUserPlus size={20} />} >
+                                        <b>Signup</b>
+                                    </Menu.Item>
+                                </Menu.Dropdown>
+                            </Menu>
+
+                        </div>
 
 
-                        </Group>
-
-                        <Burger opened={drawerOpened} onClick={toggleDrawer} className={classes.hiddenDesktop} />
-                    </Group>
+                    </div>
                 </Container>
             </Header>
 
             <Drawer
                 opened={drawerOpened}
                 onClose={closeDrawer}
-                size="100%"
+                size="75%"
                 padding="md"
-                title="Navigation"
+                title=""
                 className={classes.hiddenDesktop}
+                overlayColor={theme.colorScheme === 'dark' ? theme.colors.dark[9] : theme.colors.gray[2]}
+                overlayOpacity={0.55}
+                overlayBlur={3}
                 zIndex={1000000}
             >
                 <ScrollArea sx={{ height: 'calc(100vh - 60px)' }} mx="-md">
-                    <Divider my="sm" color={theme.colorScheme === 'dark' ? 'dark.5' : 'gray.1'} />
+                    {/* <Divider my="sm" color={theme.colorScheme === 'dark' ? 'dark.5' : 'gray.1'} /> */}
 
                     <a href="#" className={classes.link}>
                         Home
@@ -196,7 +152,6 @@ export const NavBar = () => {
                     </Group>
                 </ScrollArea>
             </Drawer>
-        </Box>
-
+        </Box >
     );
 };
