@@ -1,6 +1,7 @@
-import { Title, Text, Anchor, Grid } from '@mantine/core';
+import { Anchor, Grid, Text, Title } from '@mantine/core';
+import { Footer } from 'components/Footer';
+import { ProductCard } from '../Product/ProductCard';
 import useStyles from './Welcome.styles';
-import { ProductCard } from '../Product/ProductCard'
 
 export function Welcome() {
   const { classes } = useStyles();
@@ -29,6 +30,7 @@ export function Welcome() {
         <Grid.Col md={4} lg={3}> <ProductCard /></Grid.Col>
       </Grid>
 
+      <Footer/>
 
     </>
   );
