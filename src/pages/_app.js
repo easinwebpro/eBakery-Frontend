@@ -5,6 +5,8 @@ import { AppProps } from 'next/app';
 import Head from 'next/head';
 import { MantineProvider, ColorScheme, ColorSchemeProvider } from '@mantine/core';
 import { NotificationsProvider } from '@mantine/notifications';
+import NextNProgress from 'nextjs-progressbar';
+import 'react-lazy-load-image-component/src/effects/blur.css';
 
 const App = ({ Component, pageProps }) => {
 
@@ -22,11 +24,11 @@ const App = ({ Component, pageProps }) => {
         <title>Mantine next example</title>
         <meta name="viewport" content="minimum-scale=1, initial-scale=1, width=device-width" />
         <link rel="shortcut icon" href="/favicon.svg" />
-        
+
         <meta name='viewport' content='minimum-scale=1, initial-scale=1, width=device-width, shrink-to-fit=no, user-scalable=no, viewport-fit=cover'
         />
       </Head>
-
+      <NextNProgress color="#12b886" options={{showSpinner: false}}/>
       <ColorSchemeProvider colorScheme={colorScheme} toggleColorScheme={toggleColorScheme}>
         <MantineProvider theme={{ colorScheme }} withGlobalStyles withNormalizeCSS>
           <NotificationsProvider>
