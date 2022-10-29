@@ -42,9 +42,10 @@ export const BottomNav = () => {
 
                             <div sm={{ height: '100%' }} className={`${classes.menubar_wrapper_bn} `}>
                                 <Group sx={{ height: '100%' }} spacing={0} className={classes.hiddenMobile}>
-                                    <a href="#" className={classes.link}>
-                                        Home
-                                    </a>
+                                    <Link href="/about" passHref>
+                                        <Button> Home </Button>
+                                    </Link>
+                                    
                                     <a href="#" className={classes.link}>
                                         Shop
                                     </a>
