@@ -5,7 +5,7 @@ export const useStyles = createStyles((theme) => ({
     menu_wrapper_mbn: {
         display: 'flex',
         alignItems: 'center',
-        margin: '10px 0px',
+        padding: '10px 0px',
     },
     category_wrapper: {
         width: '25%',
