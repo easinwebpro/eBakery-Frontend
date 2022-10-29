@@ -1,14 +1,14 @@
 import React from 'react';
-import { Header, Container, Avatar, Group, Button, Menu, SimpleGrid, Divider, Box, Collapse } from '@mantine/core';
+import { Header, Container, Text, Group, Button, Menu, SimpleGrid, Divider, Box, Collapse } from '@mantine/core';
 
 // icon lib
 import { IconUserPlus, IconAssembly, IconCategory } from '@tabler/icons';
-
-//${scroll === true ? classes.smart_scroll : classes.scrolled_up}
+import { LazyLoadImage } from 'react-lazy-load-image-component';
 
 import { useStyles } from './BottomNav.style';
 import { useStickNav } from 'hooks/useStickNav';
 import Link from 'next/link';
+import { menu_item } from 'static/menu/bottom_menu';
 
 export const BottomNav = () => {
 
@@ -43,31 +43,34 @@ export const BottomNav = () => {
 
                             <div sm={{ height: '100%' }} className={`${classes.menubar_wrapper_bn} `}>
                                 <Group sx={{ height: '100%' }} spacing={0} className={classes.hiddenMobile}>
-                                    <Link href="/about" passHref>
-                                        <Button> Home </Button>
-                                    </Link>
-                                    
-                                    <a href="#" className={classes.link}>
-                                        Shop
-                                    </a>
-                                    <a href="#" className={classes.link}>
-                                        About
-                                    </a>
-                                    <a href="#" className={classes.link}>
-                                        Offer
-                                    </a>
-                                    <a href="#" className={classes.link}>
-                                        Contact
-                                    </a>
+                                    {
+                                        menu_item.map((item, index) => (
+                                            <Link href={item?.slug} passHref>
+                                                <a className={classes.link}> {item?.name} </a>
+                                            </Link>
+                                        ))
+                                    }
+
                                 </Group>
                             </div>
 
                             <div className={` ${classes.calltoaction} `}>
 
-                                <div style={{ marginRight: '20px', }}>
-                                    {/* <ColorSchemeToggle /> */}
+                                <div className={classes.support_center}>
+                                    <LazyLoadImage
+                                        width="35px"
+                                        alt="support center"
+                                        effect="blur"
+                                        src="https://i.ibb.co/z81MKKV/customer-ser.png" />
+                                    <div className={classes.support_center_con}>
+                                        <Text className={classes.support_center_title}>
+                                            01900-888-888
+                                        </Text>
+                                        <Text size="12px" className={classes.support_center_desc}>
+                                            24/7 Support Center
+                                        </Text>
+                                    </div>
                                 </div>
-
                             </div>
 
                         </div>
