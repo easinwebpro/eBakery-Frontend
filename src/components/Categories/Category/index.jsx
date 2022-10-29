@@ -17,7 +17,7 @@ export const Category = ({ category }) => {
 				alt={name + ' image'}
 				withPlaceholder
 			/>
-			<Text size='md' color='dimmed' className={classes?.text}>
+			<Text size='md' weight={500} className={classes?.text}>
 				{name}
 			</Text>
 		</div>

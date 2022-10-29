@@ -1,5 +1,5 @@
 import { Carousel } from '@mantine/carousel';
-import { Category } from 'components/Category';
+import { Category } from 'components/Categories/Category';
 
 // Fake data for categories
 import categoryItems from './categoriesFakeData.js';
@@ -12,6 +12,7 @@ export const Categories = () => {
 			align='start'
 			slideGap='sm'
 			controlSize={categoryItems.length}
+			loop
 			dragFree
 		>
 			{categoryItems.map((category) => (

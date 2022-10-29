@@ -8,6 +8,7 @@ import { IconUserPlus, IconAssembly, IconCategory } from '@tabler/icons';
 
 import { useStyles } from './BottomNav.style';
 import { useStickNav } from 'hooks/useStickNav';
+import Link from 'next/link';
 
 export const BottomNav = () => {
 
@@ -18,7 +19,7 @@ export const BottomNav = () => {
         <div>
             <Box pb={20}>
 
-                <Header height={50} px="md" className={`${classes.hiddenMobile} ${scroll === true ? classes.smart_scroll : classes.scrolled_up}`}>
+                <Header height={60} px="md" className={`${classes.hiddenMobile} ${scroll === true ? classes.smart_scroll : classes.scrolled_up}`}>
                     <Container size="97%">
                         <div className={classes.menu_wrapper_mbn}>
                             <div className={classes.category_wrapper}>
