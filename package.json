@@ -32,7 +32,8 @@
     "nextjs-progressbar": "^0.0.16",
     "qs": "^6.11.0",
     "react": "18.2.0",
-    "react-dom": "18.2.0"
+    "react-dom": "18.2.0",
+    "react-lazy-load-image-component": "^1.5.5"
   },
   "devDependencies": {
     "@babel/core": "^7.17.8",
