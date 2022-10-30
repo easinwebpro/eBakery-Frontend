@@ -10,7 +10,7 @@ export const SearchBar = ( TextInputProps) => {
             radius="xl"
             size="md"
             rightSection={
-                <ActionIcon size={32} radius="xl" color={theme.primaryColor} variant="filled">
+                <ActionIcon size={32} radius="xl" color="green" variant="filled">
                     {theme.dir === 'ltr' ? (
                         <IconArrowRight size={18} stroke={1.5} />
                     ) : (
