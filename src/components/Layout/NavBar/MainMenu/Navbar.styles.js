@@ -1,6 +1,60 @@
 import { createStyles } from '@mantine/core';
 
 export const useStyles = createStyles((theme) => ({
+    menu_wrapper: {
+        display: 'flex',
+        alignItems: 'center',
+        margin: '10px 0px',
+        [theme.fn.smallerThan('sm')]: {
+            padding: '13px 0px',
+            margin: '0 !important'
+        },
+    },
+    logo_wrapper: {
+        width: '20%',
+        [theme.fn.smallerThan('sm')]: {
+            width: '50%',
+        },
+        h3: {
+            margin: 0,
+            [theme.fn.smallerThan('sm')]: {
+                textAlign: 'center',
+            },
+        },
+
+    },
+    search_bar: {
+        width: '70%',
+        textAlign: 'center',
+    },
+    profile: {
+        width: '30%',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'end',
+    },
+    mobile_menu: {
+        width: '20%',
+        display: 'flex',
+        justifyContent: 'start',
+    },
+
+    smart_scroll: {
+        position: 'fixed',
+        marginBottom: '10px',
+        top: '0',
+        right: '0',
+        left: '0',
+        zIndex: '1030',
+        boxShadow: '0 8px 20px 0 rgb(0 0 0 / 5%)'
+    },
+    scrolled_down: {
+        transform: 'translateY(-100%), transition: all 0.3s ease-in-out',
+    },
+    scrolled_up: {
+        transform: 'translateY(0), transition: all 0.3s ease-in-out'
+    },
+
     link: {
         display: 'flex',
         alignItems: 'center',
@@ -48,13 +102,13 @@ export const useStyles = createStyles((theme) => ({
 
     hiddenMobile: {
         [theme.fn.smallerThan('sm')]: {
-            display: 'none',
+            display: 'none !important',
         },
     },
 
     hiddenDesktop: {
         [theme.fn.largerThan('sm')]: {
-            display: 'none',
+            display: 'none !important',
         },
     },
 }));

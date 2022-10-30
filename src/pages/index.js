@@ -9,9 +9,8 @@ export default function HomePage() {
 	return (
 		<>
 			<NavBar />
-			
 			<Layout>
-			<HeroSection/>
+				<HeroSection/>
 				<Categories />
 				<Welcome />
 				<Services />
