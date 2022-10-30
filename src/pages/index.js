@@ -1,6 +1,7 @@
 import { Categories } from 'components/Categories';
 import Layout from 'components/Layout/Layout';
 import { NavBar } from 'components/Layout/NavBar';
+import { Services } from 'components/Services';
 import { Welcome } from 'components/Welcome/Welcome';
 
 export default function HomePage() {
@@ -10,6 +11,7 @@ export default function HomePage() {
 			<Layout>
 				<Categories />
 				<Welcome />
+				<Services />
 			</Layout>
 		</>
 	);
