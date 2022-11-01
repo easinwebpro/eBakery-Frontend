@@ -1,4 +1,3 @@
-import { createStyles, Text, Title, TextInput, Button, Image } from '@mantine/core';
 import { Carousel } from '@mantine/carousel';
 import { HeroItem } from './HeroItem';
 
@@ -16,15 +15,23 @@ const heroSectionData = [
 ];
 
 export const HeroSection = () => {
-  return (
-    <div style={{marginBottom: '40px'}}>
-      <Carousel slideSize="100%" height={'auto'} withControls={false} withIndicators>
-      {heroSectionData.map((item) => (
-        <HeroItem key={item.title} title={item.title} subTitle={item.subTitle} image={item.image}/>
-      ))}
-    </Carousel>
-    </div>
-  );
-}
-
-
+	return (
+		<div style={{ marginBottom: '40px' }}>
+			<Carousel
+				slideSize='100%'
+				height={'auto'}
+				withControls={false}
+				withIndicators
+			>
+				{heroSectionData.map((item) => (
+					<HeroItem
+						key={item.title}
+						title={item.title}
+						subTitle={item.subTitle}
+						image={item.image}
+					/>
+				))}
+			</Carousel>
+		</div>
+	);
+};
