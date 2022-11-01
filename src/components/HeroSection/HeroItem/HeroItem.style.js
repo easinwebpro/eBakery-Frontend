@@ -2,7 +2,7 @@ import { createStyles } from '@mantine/core';
 
 export const HeroItemStyles = createStyles((theme) => ({
 	wrapper: {
-		height: '500px',
+		height: 'auto',
 		display: 'flex',
 		alignItems: 'center',
 		padding: theme.spacing.xl * 2,
