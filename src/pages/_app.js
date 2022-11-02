@@ -2,6 +2,8 @@ import { GetServerSidePropsContext } from 'next';
 import { useState } from 'react';
 import { AppProps } from 'next/app';
 // import { getCookie, setCookie } from 'cookies-next';
+import { store } from '../store/store';
+import { Provider } from 'react-redux'
 import Head from 'next/head';
 import { MantineProvider, ColorScheme, ColorSchemeProvider } from '@mantine/core';
 import { NotificationsProvider } from '@mantine/notifications';
@@ -32,7 +34,9 @@ const App = ({ Component, pageProps }) => {
       <ColorSchemeProvider colorScheme={colorScheme} toggleColorScheme={toggleColorScheme}>
         <MantineProvider theme={{ colorScheme }} withGlobalStyles withNormalizeCSS>
           <NotificationsProvider>
+          <Provider store={store}>
             <Component {...pageProps} />
+            </Provider>
           </NotificationsProvider>
         </MantineProvider>
       </ColorSchemeProvider>
