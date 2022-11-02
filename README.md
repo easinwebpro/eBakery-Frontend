@@ -1,7 +1,5 @@
 # Next eBakery Web-App
 
-# Test
-
 # Hi, I'm Easin Webpro! 👋
 
 #### 🔗 Live Preview
