@@ -22,11 +22,11 @@ export function Welcome() {
         . To get started edit index.tsx file.
       </Text>
 
-      <Grid>
-        <Grid.Col md={4} lg={3}> <ProductCard /> </Grid.Col>
-        <Grid.Col md={4} lg={3}> <ProductCard /></Grid.Col>
-        <Grid.Col md={4} lg={3}> <ProductCard /></Grid.Col>
-        <Grid.Col md={4} lg={3}> <ProductCard /></Grid.Col>
+      <Grid grow gutter="xs">
+        <Grid.Col sm={6} lg={3}> <ProductCard /> </Grid.Col>
+        <Grid.Col sm={6} lg={3}> <ProductCard /></Grid.Col>
+        <Grid.Col sm={6} lg={3}> <ProductCard /></Grid.Col>
+        <Grid.Col sm={6} lg={3}> <ProductCard /></Grid.Col>
       </Grid>
 
 
