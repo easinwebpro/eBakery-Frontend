@@ -56,12 +56,13 @@ export const useStyles = createStyles((theme, _params, getRef) => ({
         alignItems: 'center',
         marginRight: '10px',
         'del': {
-            marginLeft: '15px',
+            marginLeft: '20px',
         },
     },
 
     product_card_addtocart: {
         width: '60%',
+        padding: '0px 0px 0px 50px',
     },
 
 }));

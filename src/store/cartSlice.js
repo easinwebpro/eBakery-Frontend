@@ -25,10 +25,17 @@ export const cartSlice = createSlice({
             state.carts[data.id] = cart;
         },
 
+        getItemFromCart: (state, action) => {
+            const product_id = action.payload;
+            let cart = state.carts[product_id];
+            if (!cart) { return false; }
+            return cart;
+        },
+
         removeItemToCart: (state, action) => {
             const product_id = action.payload;
             if (!state.carts[product_id]) { return false; }
-            delete state.carts[product_id]
+            delete state.carts[product_id];
             // setItemsStorage('favorite_items', state.favorite_list);
         },
 
@@ -55,7 +62,7 @@ export const cartSlice = createSlice({
             }
             cart.quantity -= 1;
             state.carts[product_id] = cart;
-            
+
         },
 
         calculateUniqueItems: (state, action) => {
