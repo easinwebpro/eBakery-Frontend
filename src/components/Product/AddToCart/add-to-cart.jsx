@@ -1,6 +1,6 @@
+import React from 'react'
 import { Button } from '@mantine/core';
 import { IconBasket, IconMoodSad } from '@tabler/icons';
-import React from 'react'
 
 export const AddToCart = ({ addToCart, disabled = false }) => {
     return (
