@@ -1,6 +1,7 @@
 import React from 'react';
 import { TextInput, PasswordInput, Anchor, Paper, Title, Text, Container, Group, Button } from '@mantine/core';
 import Link from 'next/link';
+import { useForm } from '@mantine/form';
 import { IconLock , IconAt , IconMail } from '@tabler/icons';
 
 export const Register = () => {
@@ -15,7 +16,7 @@ export const Register = () => {
                 </Title>
                 <Text color="dimmed" size="sm" align="center" mt={5}>
                     Do have account yet please login?{' '}
-                    <Link href='/auth/sigin' passHref>
+                    <Link href='/auth/login' passHref>
                         <Anchor component="a">
                             Login
                         </Anchor>

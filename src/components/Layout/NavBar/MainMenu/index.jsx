@@ -8,6 +8,7 @@ import { ColorSchemeToggle } from '../../../ColorSchemeToggle/ColorSchemeToggle'
 import { useStyles } from './Navbar.styles';
 import { SearchBar } from '../Search';
 import { useStickNav } from 'hooks/useStickNav';
+import Link from 'next/link';
 
 export const MainMenu = () => {
 
@@ -28,7 +29,9 @@ export const MainMenu = () => {
                         </div>
 
                         <div className={classes.logo_wrapper}>
-                            <h3>Mantine UI </h3>
+                            <Link Link href='/' passHref>
+                                <h3>eBakery</h3>
+                            </Link>
                         </div>
 
                         <div className={`${classes.search_bar} ${classes.hiddenMobile} `}>
@@ -47,12 +50,16 @@ export const MainMenu = () => {
                                 </Menu.Target>
 
                                 <Menu.Dropdown>
-                                    <Menu.Item icon={<IconAssembly size={20} />} >
-                                        <b>Signin</b>
-                                    </Menu.Item>
-                                    <Menu.Item icon={<IconUserPlus size={20} />} >
-                                        <b>Signup</b>
-                                    </Menu.Item>
+                                    <Link Link href='/auth/login' passHref>
+                                        <Menu.Item icon={<IconAssembly size={20} />} >
+                                            <b>Signin</b>
+                                        </Menu.Item>
+                                    </Link>
+                                    <Link Link href='/auth/register' passHref>
+                                        <Menu.Item icon={<IconUserPlus size={20} />} >
+                                            <b>Signup</b>
+                                        </Menu.Item>
+                                    </Link>
                                 </Menu.Dropdown>
                             </Menu>
 
