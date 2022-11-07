@@ -16,7 +16,8 @@ export const useStyles = createStyles((theme) => ({
         background: '#FEE',
         display: 'flex',
         alignItems: 'center',
-        justifyContent: 'center'
+        justifyContent: 'center',
+        cursor: 'pointer',
     },
 
     'favorite_icon_color': {
