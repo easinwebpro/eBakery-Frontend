@@ -6,11 +6,12 @@ import { store } from '../store/store';
 import { Provider } from 'react-redux'
 import Head from 'next/head';
 import { MantineProvider, ColorScheme, ColorSchemeProvider } from '@mantine/core';
+import { SessionProvider } from "next-auth/react"
 import { NotificationsProvider } from '@mantine/notifications';
 import NextNProgress from 'nextjs-progressbar';
 import 'react-lazy-load-image-component/src/effects/blur.css';
 
-const App = ({ Component, pageProps }) => {
+const App = ({ Component, ...pageProps }) => {
 
   const [colorScheme, setColorScheme] = useState(ColorScheme);
 
@@ -23,19 +24,21 @@ const App = ({ Component, pageProps }) => {
   return (
     <>
       <Head>
-        <title>Mantine next example</title>
+        <title>eBakery Shop</title>
         <meta name="viewport" content="minimum-scale=1, initial-scale=1, width=device-width" />
         <link rel="shortcut icon" href="/favicon.svg" />
 
         <meta name='viewport' content='minimum-scale=1, initial-scale=1, width=device-width, shrink-to-fit=no, user-scalable=no, viewport-fit=cover'
         />
       </Head>
-      <NextNProgress color="#12b886" options={{showSpinner: false}}/>
+      <NextNProgress color="#12b886" options={{ showSpinner: false }} />
       <ColorSchemeProvider colorScheme={colorScheme} toggleColorScheme={toggleColorScheme}>
         <MantineProvider theme={{ colorScheme }} withGlobalStyles withNormalizeCSS>
           <NotificationsProvider>
-          <Provider store={store}>
-            <Component {...pageProps} />
+            <Provider store={store}>
+              <SessionProvider session={pageProps?.session}>
+                <Component {...pageProps} />
+              </SessionProvider>
             </Provider>
           </NotificationsProvider>
         </MantineProvider>

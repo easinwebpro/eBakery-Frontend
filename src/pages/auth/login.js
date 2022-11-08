@@ -3,17 +3,17 @@ import Layout from 'components/Layout/Layout';
 import { HeroSection } from 'components/HeroSection';
 import { Services } from 'components/Services';
 import { Welcome } from 'components/Welcome/Welcome';
-import { Login } from 'components/auth/Login';
+import { Login as LoginX } from 'components/auth/Login';
 
-const Sigin = () => {
+const Login = () => {
     return (
         <>
             <Layout>
-                <Login/>
+                <LoginX />
             </Layout>
         </>
     );
 };
 
-export default Sigin;
+export default Login;
 
