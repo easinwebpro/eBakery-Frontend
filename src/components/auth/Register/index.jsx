@@ -9,10 +9,6 @@ import { IconLock, IconAt, IconMail } from '@tabler/icons';
 
 export const Register = () => {
 
-    const router = useRouter();
-    const { data: session, status } = useSession();
-    console.log(session, status);
-
     const form = useForm({
         initialValues: {
             username: '',
@@ -42,11 +38,6 @@ export const Register = () => {
         } catch (err) {
             console.error(err.message);
         }
-    }
-
-
-    if (session?.user && status === "authenticated" && session?.jwt) {
-        router.push('/');
     }
 
     return (

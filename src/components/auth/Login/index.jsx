@@ -2,16 +2,10 @@ import React from 'react';
 import { TextInput, PasswordInput, Checkbox, Anchor, Paper, Title, Text, Container, Group, Button } from '@mantine/core';
 import Link from 'next/link';
 import { signIn } from "next-auth/react";
-import { useRouter } from "next/router";
 import { useForm } from '@mantine/form';
-import { useSession } from "next-auth/react";
 import { IconLock, IconMail } from '@tabler/icons';
 
 export const Login = () => {
-
-    const router = useRouter();
-    const { data: session, status } = useSession();
-    // console.log(session, status);
 
     const form = useForm({
         initialValues: {
@@ -44,9 +38,6 @@ export const Login = () => {
         return <h4>Loading...</h4>
     }
 
-    if (session?.user && status === "authenticated" && session?.jwt) {
-        router.push('/');
-    }
 
     return (
 
