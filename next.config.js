@@ -11,4 +11,7 @@ module.exports = withPWA({
       "googleusercontent.com",
     ],
   },
+  env: {
+    API_ENDPOINT: process.env.API_ENDPOINT,
+  },
 });
