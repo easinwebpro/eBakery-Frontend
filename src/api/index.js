@@ -2,13 +2,15 @@
 import axios from 'axios';
 import { parseCookies } from 'nookies';
 
-const baseUrl = 'http://localhost:1337';
+import { API_ENDPOINT } from 'config';
+
+const baseUrl = API_ENDPOINT || 'http://localhost:1337';
 
 const cookies = parseCookies();
 
 const config = {
     headers: {
-        'Authorization': cookies.user_jwt
+        // 'Authorization': cookies?.user_jwt
     }
 };
 
