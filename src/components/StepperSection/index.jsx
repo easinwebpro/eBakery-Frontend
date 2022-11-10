@@ -1,5 +1,6 @@
 import { Button, Group, Stepper } from '@mantine/core';
 import { Login } from 'components/auth/Login';
+import { Shipping } from 'components/Shipping';
 import { useState } from 'react';
 
 export const StepperSection = () => {
@@ -31,7 +32,7 @@ export const StepperSection = () => {
 					description='Shipping address'
 					allowStepSelect={active > 1}
 				>
-					Step 2 content: Verify email
+					<Shipping />
 				</Stepper.Step>
 				<Stepper.Step
 					label='Final step'
