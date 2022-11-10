@@ -1,4 +1,5 @@
-import { Loader } from "@mantine/core";
+import { useState } from 'react';
+import { Skeleton, Loader, Carousel } from '@mantine/core';
 
 export const PageLoader = () => {
     return (
@@ -12,3 +13,4 @@ export const PageLoader = () => {
 export const Spainer = () => {
     return <Loader color="green" />;
 }
+

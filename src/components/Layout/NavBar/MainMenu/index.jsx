@@ -30,7 +30,7 @@ export const MainMenu = () => {
 
                         <div className={classes.logo_wrapper}>
                             <Link Link href='/' passHref>
-                                <h3>eBakery</h3>
+                                <h3 style={{cursor : 'pointer'}}>eBakery</h3>
                             </Link>
                         </div>
 
@@ -50,12 +50,12 @@ export const MainMenu = () => {
                                 </Menu.Target>
 
                                 <Menu.Dropdown>
-                                    <Link Link href='/auth/login' passHref>
+                                    <Link href='/auth/login' passHref>
                                         <Menu.Item icon={<IconAssembly size={20} />} >
                                             <b>Signin</b>
                                         </Menu.Item>
                                     </Link>
-                                    <Link Link href='/auth/register' passHref>
+                                    <Link href='/auth/register' passHref>
                                         <Menu.Item icon={<IconUserPlus size={20} />} >
                                             <b>Signup</b>
                                         </Menu.Item>
