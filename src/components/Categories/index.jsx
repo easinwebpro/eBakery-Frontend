@@ -1,25 +1,34 @@
 import { Carousel } from '@mantine/carousel';
 import { Category } from 'components/Categories/Category';
+import { CategoryLoader } from 'components/Loader/CategoryLoader';
+import { useGetCategoryDataQuery } from 'store/services/categoriesApi';
+import { categories_dtos } from 'utils/helpers/categories_dtos';
 
-// Fake data for categories
-import categoryItems from './categoriesFakeData.js';
+export const Categories = ({ categoryType = 'grid' }) => {
 
-export const Categories = () => {
+	const { data, isLoading, isError, status } = useGetCategoryDataQuery();
+	const categoriesData = categories_dtos(data);
+	console.log('categoriesData', categoriesData, isLoading);
+
 	return (
-		<Carousel
-			slideSize='100px'
-			height={120}
-			align='start'
-			slideGap='sm'
-			controlSize={categoryItems.length}
-			loop
-			dragFree
-		>
-			{categoryItems.map((category) => (
-				<Carousel.Slide key={category.name}>
-					<Category category={category} />
-				</Carousel.Slide>
-			))}
-		</Carousel>
+		categoriesData?.length > 0 ?
+			<Carousel
+				slideSize='100px'
+				height={120}
+				align='start'
+				slideGap='sm'
+				controlSize={categoriesData?.length}
+				loop
+				dragFree
+			>
+				{
+					categoriesData?.map((category) => (
+						<Carousel.Slide key={category.name}>
+							<Category category={category} />
+						</Carousel.Slide>
+					))
+				}
+			</Carousel> : <CategoryLoader />
+
 	);
 };

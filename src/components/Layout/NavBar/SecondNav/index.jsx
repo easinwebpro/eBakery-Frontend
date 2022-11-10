@@ -5,15 +5,19 @@ import { Header, Container, Text, Group, Button, Menu, SimpleGrid, Divider, Box,
 import { IconUserPlus, IconAssembly, IconCategory } from '@tabler/icons';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 
-import { useStyles } from './BottomNav.style';
+import { useMediaQuery } from '@mantine/hooks';
+
+import { useStyles } from './SecondNav.style';
 import { useStickNav } from 'hooks/useStickNav';
 import Link from 'next/link';
 import { menu_item } from 'static/menu/bottom_menu';
 
-export const BottomNav = () => {
+export const SecondNav = () => {
 
     const scroll = useStickNav();
     const { classes, theme } = useStyles();
+
+    const matches = useMediaQuery('(min-width: 885px)');
 
     return (
         <div>
@@ -45,7 +49,7 @@ export const BottomNav = () => {
                                 <Group sx={{ height: '100%' }} spacing={0} className={classes.hiddenMobile}>
                                     {
                                         menu_item.map((item, index) => (
-                                            <Link href={item?.slug} passHref>
+                                            <Link key={index} href={item?.slug} passHref>
                                                 <a className={classes.link}> {item?.name} </a>
                                             </Link>
                                         ))
@@ -55,22 +59,24 @@ export const BottomNav = () => {
                             </div>
 
                             <div className={` ${classes.calltoaction} `}>
-
-                                <div className={classes.support_center}>
-                                    <LazyLoadImage
-                                        width="35px"
-                                        alt="support center"
-                                        effect="blur"
-                                        src="https://i.ibb.co/z81MKKV/customer-ser.png" />
-                                    <div className={classes.support_center_con}>
-                                        <Text className={classes.support_center_title}>
-                                            01900-888-888
-                                        </Text>
-                                        <Text size="12px" className={classes.support_center_desc}>
-                                            24/7 Support Center
-                                        </Text>
+                                {
+                                    matches && <div className={classes.support_center}>
+                                        <LazyLoadImage
+                                            width="35px"
+                                            alt="support center"
+                                            effect="blur"
+                                            src="https://i.ibb.co/z81MKKV/customer-ser.png" />
+                                        <div className={classes.support_center_con}>
+                                            <Text className={classes.support_center_title}>
+                                                01900-888-888
+                                            </Text>
+                                            <Text size="12px" className={classes.support_center_desc}>
+                                                24/7 Support Center
+                                            </Text>
+                                        </div>
                                     </div>
-                                </div>
+                                }
+
                             </div>
 
                         </div>
