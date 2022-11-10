@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useRouter } from "next/router";
 import { useSession } from "next-auth/react";
 import { PageLoader } from './Loader';
@@ -11,17 +11,22 @@ export const IsAuthenticated = ({ children }) => {
     if (session?.user && status === "authenticated" && session?.jwt) {
         return (children);
     } else {
-        router.push("/auth/login");
+        useEffect(() => {
+            router?.push("/auth/login");
+        }, [])
+
     }
 };
 
 export const UnAuthenticated = ({ children }) => {
     const router = useRouter();
     const { data: session, status } = useSession();
-    if ( !session?.user && status === "unauthenticated" && !session?.jwt) {
+    if (!session?.user && status === "unauthenticated" && !session?.jwt) {
         return (children);
     } else {
-        router.push("/");
-        return <PageLoader/>
+        useEffect(() => {
+            router?.push("/");
+        }, []);
+        return <PageLoader />
     }
 };
