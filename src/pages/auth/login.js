@@ -1,15 +1,14 @@
-import { Categories } from 'components/Categories';
+import { UnAuthenticated } from 'components/ProtectedRoute';
 import Layout from 'components/Layout/Layout';
-import { HeroSection } from 'components/HeroSection';
-import { Services } from 'components/Services';
-import { Welcome } from 'components/Welcome/Welcome';
 import { Login as LoginX } from 'components/auth/Login';
 
 const Login = () => {
     return (
         <>
             <Layout>
-                <LoginX />
+                <UnAuthenticated>
+                    <LoginX />
+                </UnAuthenticated>
             </Layout>
         </>
     );
