@@ -1,12 +1,12 @@
 import React from 'react';
 import { MainMenu } from './MainMenu'
-import { BottomNav } from './BottomNav';
+import { SecondNav } from './SecondNav';
 
 export const NavBar = () => {
     return (
         <div>
             <MainMenu />
-            <BottomNav />
+            <SecondNav />
         </div>
     )
 }
