@@ -1,32 +1,42 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useRouter } from "next/router";
 import { useSession } from "next-auth/react";
 import { PageLoader } from './Loader';
 
 export const IsAuthenticated = ({ children }) => {
+
     const router = useRouter();
     const { data: session, status } = useSession();
-    console.log('I am From IsAuthenticated', session)
+    const [isAuth, setIsAuth] = useState(false);
 
-    if (session?.user && status === "authenticated" && session?.jwt) {
-        return (children);
-    } else {
-        useEffect(() => {
+    useEffect(() => {
+        if (session?.user && status === "authenticated" && session?.jwt) {
+            setIsAuth(true)
+        } else {
             router?.push("/auth/login");
-        }, [])
+            !session?.user && setIsAuth(false);
+        }
+    }, [session, router])
 
-    }
+    return isAuth && children;
+
 };
 
 export const UnAuthenticated = ({ children }) => {
     const router = useRouter();
     const { data: session, status } = useSession();
-    if (!session?.user && status === "unauthenticated" && !session?.jwt) {
-        return (children);
-    } else {
-        useEffect(() => {
+    const [isAuth, setIsAuth] = useState(false);
+
+    useEffect(() => {
+        if (session?.user && status === "authenticated" && session?.jwt) {
             router?.push("/");
-        }, []);
-        return <PageLoader />
-    }
+            setIsAuth(false)
+        } else {
+            !session?.user && setIsAuth(true)
+        }
+    }, [session, router])
+
+
+    return !isAuth ? <PageLoader /> : children;
+
 };
