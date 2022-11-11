@@ -1,8 +1,8 @@
 import React from 'react';
-import { Header, Container, Text, Group, Button, Menu, SimpleGrid, Divider, Box, Collapse } from '@mantine/core';
+import { Header, Container, Text, Group, Button, Menu, SimpleGrid, Divider, Box, Collapse, Image } from '@mantine/core';
 
 // icon lib
-import { IconUserPlus, IconAssembly, IconCategory } from '@tabler/icons';
+import { IconUserPlus, IconAssembly, IconCategory, IconCategory2 } from '@tabler/icons';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 
 import { useMediaQuery } from '@mantine/hooks';
@@ -11,6 +11,9 @@ import { useStyles } from './SecondNav.style';
 import { useStickNav } from 'hooks/useStickNav';
 import Link from 'next/link';
 import { menu_item } from 'static/menu/bottom_menu';
+import { useGetCategoryDataQuery } from 'store/services/categoriesApi';
+import { categories_dtos } from 'utils/helpers/categories_dtos';
+
 
 export const SecondNav = () => {
 
@@ -18,6 +21,10 @@ export const SecondNav = () => {
     const { classes, theme } = useStyles();
 
     const matches = useMediaQuery('(min-width: 885px)');
+
+    // fetchCategories data 
+    const { data, isLoading, isError, status } = useGetCategoryDataQuery();
+    const categoriesData = categories_dtos(data);
 
     return (
         <div>
@@ -35,12 +42,30 @@ export const SecondNav = () => {
                                     </Menu.Target>
 
                                     <Menu.Dropdown>
-                                        <Menu.Item icon={<IconAssembly size={20} />} >
-                                            <b>Signin</b>
-                                        </Menu.Item>
-                                        <Menu.Item icon={<IconUserPlus size={20} />} >
-                                            <b>Signup</b>
-                                        </Menu.Item>
+                                        {
+                                            categoriesData?.length ?
+                                                categoriesData?.map((category, ind) => (
+                                                    ind <= 8 ? <Link key={ind} href={`/category/${category.slug}`} passHref>
+                                                        <Menu.Item
+                                                            icon={<Image src={category?.category_image} width={30} height={30} />}>
+                                                            <b>{category?.name}</b>
+                                                        </Menu.Item>
+                                                    </Link> : ''
+                                                ))
+                                                :
+                                                <Menu.Item>
+                                                    <b>Category Not Found!</b>
+                                                </Menu.Item>
+                                        }
+
+                                        {categoriesData?.length >= 10 &&
+                                            <Link href={`/category`} passHref>
+                                                <Menu.Item icon={<IconCategory2 size={20} />}>
+                                                    <b>View all Categories</b>
+                                                </Menu.Item>
+                                            </Link>
+                                        }
+
                                     </Menu.Dropdown>
                                 </Menu>
                             </div>
