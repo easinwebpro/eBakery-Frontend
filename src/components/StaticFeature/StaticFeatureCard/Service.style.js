@@ -8,6 +8,8 @@ export const serviceStyles = createStyles((theme) => ({
 				: theme.colors.gray[9],
 		padding: '15px 10px',
 		borderRadius: '5px',
+		width: '260px',
+		margin: '20px 0px'
 	},
 	title: {
 		fontWeight: '600',

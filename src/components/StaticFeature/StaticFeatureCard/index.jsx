@@ -1,7 +1,7 @@
 import { Group, Image, Text } from '@mantine/core';
 import { serviceStyles } from './Service.style';
 
-export const Service = ({ title, subTitle, image }) => {
+export const StaticFeatureCard = ({ title, subTitle, image }) => {
 	const { classes } = serviceStyles();
 
 	return (

@@ -1,7 +1,4 @@
-import { SimpleGrid } from '@mantine/core';
-import { Service } from './Service';
-
-const servicesData = [
+export const staticFeatureData = [
 	{
 		title: 'Best prices & offers',
 		subTitle: 'Orders $50 or more',
@@ -28,24 +25,3 @@ const servicesData = [
 		image: 'https://nest-nextjs.vercel.app/assets/imgs/theme/icons/icon-5.svg',
 	},
 ];
-
-export const Services = () => {
-	return (
-		<SimpleGrid
-			cols={5}
-			spacing='md'
-			sx={{
-				margin: '20px 0',
-			}}
-		>
-			{servicesData.map((item) => (
-				<Service
-					key={item.title}
-					title={item.title}
-					subTitle={item.subTitle}
-					image={item.image}
-				/>
-			))}
-		</SimpleGrid>
-	);
-};
