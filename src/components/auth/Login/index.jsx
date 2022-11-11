@@ -35,7 +35,6 @@ export const Login = () => {
             if (data.status === 200) {
                 setLoading(false);
                 toast.success('User login Successfully');
-                console.log(data);
             } else {
                 setLoading(false);
                 toast.error('Email OR Password Incorrect')
