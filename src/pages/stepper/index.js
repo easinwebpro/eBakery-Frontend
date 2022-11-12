@@ -1,5 +1,5 @@
 import Layout from 'components/Layout/Layout';
-import { StepperSection } from 'components/StepperSection';
+import { StepperSection } from 'components/Stepper';
 
 const stepper = () => {
 	return (
