@@ -13,6 +13,7 @@ export const favoriteItemSlice = createSlice({
   reducers: {
     addFavorite: (state , actions) => {
         const data  = actions.payload;
+        if(!data) { return false; }
         state.favorite_list[data.id] = data;
         setItemsStorage('favorite_items' ,  state.favorite_list);
     },
@@ -20,7 +21,6 @@ export const favoriteItemSlice = createSlice({
         const id  = actions.payload;
         delete state.favorite_list[id];
         setItemsStorage('favorite_items' ,  state.favorite_list);
-        
     } 
   },
 });

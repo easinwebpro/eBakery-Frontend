@@ -8,7 +8,6 @@ export const Categories = ({ categoryType = 'grid' }) => {
 
 	const { data, isLoading, isError, status } = useGetCategoryDataQuery();
 	const categoriesData = categories_dtos(data);
-	console.log('categoriesData', categoriesData, isLoading);
 
 	return (
 		categoriesData?.length > 0 ?

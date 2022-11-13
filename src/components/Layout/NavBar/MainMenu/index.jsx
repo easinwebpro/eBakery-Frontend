@@ -1,8 +1,11 @@
 import { useState, useEffect } from 'react';
 import { Header, Menu, Avatar, Group, Button, UnstyledButton, Divider, Box, Burger, Drawer, Collapse, ScrollArea, Container } from '@mantine/core';
 
+import { useSession } from "next-auth/react";
+import { signOut } from "next-auth/react";
+
 import { useDisclosure, useMediaQuery } from '@mantine/hooks';
-import { IconUserPlus, IconAssembly } from '@tabler/icons';
+import { IconUserPlus, IconAssembly, IconLogout, IconSettings } from '@tabler/icons';
 
 import { ColorSchemeToggle } from '../../../ColorSchemeToggle/ColorSchemeToggle';
 import { useStyles } from './Navbar.styles';
@@ -12,6 +15,7 @@ import Link from 'next/link';
 
 export const MainMenu = () => {
 
+    const { data: session, status } = useSession();
     const scroll = useStickNav();
     const [drawerOpened, { toggle: toggleDrawer, close: closeDrawer }] = useDisclosure(false);
     const [linksOpened, { toggle: toggleLinks }] = useDisclosure(false);
@@ -30,7 +34,7 @@ export const MainMenu = () => {
 
                         <div className={classes.logo_wrapper}>
                             <Link Link href='/' passHref>
-                                <h3 style={{cursor : 'pointer'}}>eBakery</h3>
+                                <h3 style={{ cursor: 'pointer' }}>eBakery</h3>
                             </Link>
                         </div>
 
@@ -50,16 +54,40 @@ export const MainMenu = () => {
                                 </Menu.Target>
 
                                 <Menu.Dropdown>
-                                    <Link href='/auth/login' passHref>
-                                        <Menu.Item icon={<IconAssembly size={20} />} >
-                                            <b>Signin</b>
-                                        </Menu.Item>
-                                    </Link>
-                                    <Link href='/auth/register' passHref>
-                                        <Menu.Item icon={<IconUserPlus size={20} />} >
-                                            <b>Signup</b>
-                                        </Menu.Item>
-                                    </Link>
+
+
+                                    {session?.user && status === "authenticated" && session?.jwt ?
+
+                                        <div>
+                                            <Link href='/my-account/' passHref>
+                                                <Menu.Item icon={<IconSettings size={20} />} >
+                                                    <b>My Account</b>
+                                                </Menu.Item>
+                                            </Link>
+
+                                            <Menu.Item icon={<IconLogout size={20} />} onClick={() => signOut()}>
+                                                <b>Logout</b>
+                                            </Menu.Item>
+
+                                        </div>
+
+                                        :
+                                        <div>
+                                            <Link href='/auth/login' passHref>
+                                                <Menu.Item icon={<IconAssembly size={20} />} >
+                                                    <b>Signin</b>
+                                                </Menu.Item>
+                                            </Link>
+                                            <Link href='/auth/register' passHref>
+                                                <Menu.Item icon={<IconUserPlus size={20} />} >
+                                                    <b>Signup</b>
+                                                </Menu.Item>
+                                            </Link>
+                                        </div>
+                                    }
+
+
+
                                 </Menu.Dropdown>
                             </Menu>
 
@@ -75,7 +103,7 @@ export const MainMenu = () => {
                 onClose={closeDrawer}
                 size="75%"
                 padding="md"
-                title="Mantine UI"
+                title="eBakery Shop"
                 className={classes.hiddenDesktop}
                 overlayColor={theme.colorScheme === 'dark' ? theme.colors.dark[9] : theme.colors.gray[2]}
                 overlayOpacity={0.55}
@@ -83,7 +111,7 @@ export const MainMenu = () => {
                 zIndex={1000000}
             >
                 <ScrollArea sx={{ height: 'calc(100vh - 60px)' }} mx="-md">
-                    {/* <Divider my="sm" color={theme.colorScheme === 'dark' ? 'dark.5' : 'gray.1'} /> */}
+                    <Divider my="sm" color={theme.colorScheme === 'dark' ? 'dark.5' : 'gray.1'} />
 
                     <a href="#" className={classes.link}>
                         Home
@@ -98,8 +126,30 @@ export const MainMenu = () => {
                     <Divider my="sm" color={theme.colorScheme === 'dark' ? 'dark.5' : 'gray.1'} />
 
                     <Group position="center" grow pb="xl" px="md">
-                        <Button variant="default">Log in</Button>
-                        <Button>Sign up</Button>
+                        {session?.user && status === "authenticated" && session?.jwt ?
+                            <div style={{ display: 'flex', alignItems: 'center', width: "90%" }}>
+                                <Button leftIcon={<IconLogout size={20} />} onClick={() => signOut()} fullWidth variant="gradient" gradient={{ from: 'teal', to: 'lime', deg: 105 }} radius='lg'>
+                                    Logout
+                                </Button>
+                            </div>
+                            :
+                            <div style={{ display: 'flex', alignItems: 'center' }}>
+                                <div style={{ width: '50%' }}>
+                                    <Link href='/auth/login' passHref>
+                                        <Button leftIcon={<IconAssembly size={20} />} fullWidth variant="gradient" gradient={{ from: 'teal', to: 'lime', deg: 105 }} radius='lg' onClick={closeDrawer}>
+                                            Log in
+                                        </Button>
+                                    </Link>
+                                </div>
+                                <div style={{ width: '50%', marginLeft: '5px' }}>
+                                    <Link href='/auth/register' passHref>
+                                        <Button leftIcon={<IconUserPlus size={20} />} fullWidth variant="gradient" gradient={{ from: 'orange', to: 'red' }} radius='lg' onClick={closeDrawer}>
+                                            Sign up
+                                        </Button>
+                                    </Link>
+                                </div>
+                            </div>
+                        }
                     </Group>
                 </ScrollArea>
             </Drawer>

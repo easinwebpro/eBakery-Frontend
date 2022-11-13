@@ -21,7 +21,7 @@ export const useStyles = createStyles((theme) => ({
     },
 
     'favorite_icon_color': {
-        color: 'rgb(255, 4, 0)'
+        color: 'rgb(255, 4, 0)',
     }
 
 }));

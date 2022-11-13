@@ -6,12 +6,12 @@ import { Product } from 'components/Product';
 import { Grid } from '@mantine/core';
 import { product_dtos } from 'utils/helpers/product_dtos';
 import { useGetProductByCategoryQuery } from 'store/services/categoriesApi';
+import { ProductLoader } from 'components/Loader/ProductLoader';
 
 const categoryByProduct = () => {
-    const router = useRouter()
-    // const { data, isLoading, isError, status } = useGetProductsDataQuery();
-    const { slug } = router.query;
 
+    const router = useRouter();
+    const { slug } = router.query;
     const options = {
         populate: '*',
         sort: ['id:desc'],
@@ -31,7 +31,6 @@ const categoryByProduct = () => {
     const { data, isLoading, isError, status } = useGetProductByCategoryQuery(queryString);
     const products = product_dtos(data);
 
-    console.log(data);
 
     return (
         <Layout>
@@ -45,6 +44,7 @@ const categoryByProduct = () => {
                     }
                 </Grid>
             </div>
+            {isLoading && <ProductLoader />}
         </Layout>
     )
 }

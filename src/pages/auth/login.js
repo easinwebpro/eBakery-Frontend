@@ -5,7 +5,7 @@ import { Login as LoginX } from 'components/auth/Login';
 const Login = () => {
     return (
         <>
-            <Layout>
+            <Layout footerTopStatic={false}>
                 <UnAuthenticated>
                     <LoginX />
                 </UnAuthenticated>

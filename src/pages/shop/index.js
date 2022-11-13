@@ -4,6 +4,7 @@ import { useGetProductsDataQuery } from 'store/services/productsApi';
 import { Product } from 'components/Product';
 import { Grid } from '@mantine/core';
 import { product_dtos } from 'utils/helpers/product_dtos';
+import { Toaster } from 'react-hot-toast';
 
 const shops = () => {
     const { data, isLoading, isError, status } = useGetProductsDataQuery();
@@ -12,6 +13,7 @@ const shops = () => {
 
     return (
         <Layout loader={isLoading}>
+            <div><Toaster position="top-right" reverseOrder={false} /></div>
             <h3>Shop Pages</h3>
             <Grid gutter="xs">
                 {

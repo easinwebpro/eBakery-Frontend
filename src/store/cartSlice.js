@@ -5,7 +5,6 @@ const items = getItemsStorage('cart_items');
 
 const initialState = {
     carts: { ...items },
-    uniqueItems: 0,
 }
 
 export const cartSlice = createSlice({
@@ -17,19 +16,25 @@ export const cartSlice = createSlice({
             const data = action.payload;
             if (!data) { return false; }
             const cart = {
-                id: data.id,
-                price: data.price,
+                id: data?.id,
+                title: data?.title,
+                product_image: data?.product_image,
+                price: data?.price,
                 quantity: 1,
-                stock: data.stock,
+                stock: data?.stock,
             };
-            state.carts[data.id] = cart;
+
+            if (!state.carts[cart.id]) {
+                state.carts[cart.id] = cart;
+                setItemsStorage('cart_items', state.carts);
+            }
         },
 
-        getItemFromCart: (state, action) => {
+        checkItemInCart: (state, action) => {
             const product_id = action.payload;
             let cart = state.carts[product_id];
             if (!cart) { return false; }
-            return cart;
+            return true;
         },
 
         removeItemToCart: (state, action) => {
@@ -43,25 +48,30 @@ export const cartSlice = createSlice({
             const product_id = action.payload;
             let cart = state.carts[product_id];
 
-            if (cart.quantity <= 0)
+            if (cart.quantity < 1)
                 throw new Error("cartQuantity can't be zero or less than zero");
 
             if (cart.quantity >= 1) {
                 cart.quantity += 1;
-                state.carts[product_id] = cart;
+                // state.carts[product_id] = cart;
+                setItemsStorage('cart_items', state.carts);
             }
 
         },
 
-        removeItemOrQuantity: (state, action) => {
+        removeItemQuantity: (state, action) => {
             const product_id = action.payload;
             let cart = state.carts[product_id];
             if (!cart) { return false; }
-            if (cart.quantity <= 0) {
-                delete state.carts[product_id]
+            if (cart.quantity === 1) {
+                delete state.carts[product_id];
+                setItemsStorage('cart_items', state.carts);
+            } else {
+                cart.quantity -= 1;
+                // state.carts[product_id] = cart;
+                setItemsStorage('cart_items', state.carts);
             }
-            cart.quantity -= 1;
-            state.carts[product_id] = cart;
+
 
         },
 
@@ -74,6 +84,6 @@ export const cartSlice = createSlice({
 })
 
 // Action creators are generated for each case reducer function
-export const { setProduct } = cartSlice.actions
+export const { addCartItem, checkItemInCart, removeItemToCart, addItemWithQuantity, removeItemQuantity, calculateUniqueItems } = cartSlice.actions
 
 export default cartSlice.reducer;

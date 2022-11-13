@@ -8,7 +8,7 @@ export const product_dtos = (data) => {
             id: product.id,
             slug: product.attributes.slug,
             title: product.attributes.title,
-            description: product.attributes?.discription,
+            description: product.attributes?.description,
             price: product.attributes?.price,
             sale_price: salePrice,
             stock: product.attributes?.stock,
