@@ -16,8 +16,15 @@ export const productsApi = createApi({
             providesTags: ['Product'],
         }),
 
+        getSingleProductData: builder.query({
+            query: (queryString) => `products?${queryString}`,
+            transformResponse: (res) => res?.data,
+            transformErrorResponse: (res) => res.status,
+            providesTags: ['Product'],
+        }),
+
     })
 });
 
 
-export const { useGetProductsDataQuery } = productsApi;
+export const { useGetProductsDataQuery, useGetSingleProductDataQuery } = productsApi;
