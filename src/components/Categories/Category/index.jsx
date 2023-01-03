@@ -15,7 +15,7 @@ export const Category = ({ category }) => {
 						height={70}
 						radius='md'
 						src={category?.category_image}
-						alt={'category_image'}
+						
 						withPlaceholder
 					/>
 					<Text size='md' weight={500} className={classes?.text}>
