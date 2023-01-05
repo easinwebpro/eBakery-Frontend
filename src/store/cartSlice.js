@@ -22,6 +22,7 @@ export const cartSlice = createSlice({
                 price: data?.price,
                 quantity: 1,
                 stock: data?.stock,
+                slug: data?.slug,
             };
 
             if (!state.carts[cart.id]) {
@@ -84,6 +85,6 @@ export const cartSlice = createSlice({
 })
 
 // Action creators are generated for each case reducer function
-export const { addCartItem, checkItemInCart, removeItemToCart, addItemWithQuantity, removeItemQuantity, calculateUniqueItems } = cartSlice.actions
+export const { addCartItem, checkItemInCart, removeItemToCart, addItemWithQuantity, removeItemQuantity, calculateUniqueItems } = cartSlice.actions;
 
 export default cartSlice.reducer;
