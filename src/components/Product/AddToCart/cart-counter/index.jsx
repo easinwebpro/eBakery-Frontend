@@ -14,8 +14,19 @@ export const CartCounter = ({ product }) => {
     const carts = useSelector((state) => state.cartItems.carts);
 
     const addProductQuantity = () => {
-        dispatch(addItemWithQuantity(product.id));
-        toast.success('Product Quantity Added');
+
+        if(product.stock === null) {
+            dispatch(addItemWithQuantity(product.id));
+            toast.success('Product Quantity Added');
+        } else {
+            if(carts[product.id].quantity < product.stock) {
+                dispatch(addItemWithQuantity(product.id));
+                toast.success('Product Quantity Added');
+            } else {
+                toast.error('Product not Available in Stock');
+            }
+        }
+       
     }
     const removeProductQuantity = () => {
         dispatch(removeItemQuantity(product.id));

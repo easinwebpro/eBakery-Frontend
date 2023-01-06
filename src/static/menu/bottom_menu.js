@@ -8,6 +8,10 @@ export const menu_item = [
         slug: '/shop',
     },
     {
+        name: 'Cart',
+        slug: '/cart',
+    },
+    {
         name: 'Offer',
         slug: '/offer',
     },
