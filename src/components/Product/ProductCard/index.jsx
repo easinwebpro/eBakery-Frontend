@@ -8,35 +8,49 @@ import { CartCounter } from '../AddToCart/cart-counter';
 import { FavouriteBtn } from '../FavouriteButton';
 
 
-export const ProductCard = ({ product, carts = {}, addToCart, addProductQuantity, removeProductQuantity }) => {
+export const ProductCard = ({ product, carts = {} }) => {
 
     const { classes } = useStyles();
 
     return (
         <Card radius="md" withBorder p="md" shadow="sm">
             <Card.Section>
-                <Carousel
-                    withIndicators
-                    loop
-                    classNames={{
-                        root: classes.carousel,
-                        controls: classes.carouselControls,
-                        indicator: classes.carouselIndicator,
-                    }}
-                >
-                    <Carousel.Slide>
-                        {/* <Image src={product?.product_image} height={250} /> */}
-                        <div style={{ display: 'table', margin: '0 auto' }}>
-                            <LazyLoadImage
-                                style={{ scale: '1.3' }}
-                                height="250px"
-                                alt="Product_image"
-                                effect="blur"
-                                src={product?.product_image} />
-                        </div>
 
-                    </Carousel.Slide>
-                </Carousel>
+                {
+                    product?.product_image == undefined ?
+                        <Image
+                            width='100%'
+                            height={250}
+                            radius='md'
+                            withPlaceholder
+                        />
+                        :
+                        <Carousel
+                            withIndicators
+                            loop
+                            classNames={{
+                                root: classes.carousel,
+                                controls: classes.carouselControls,
+                                indicator: classes.carouselIndicator,
+                            }}
+                        >
+                            <Carousel.Slide>
+                                {/* <Image src={product?.product_image} height={250} /> */}
+                                <div style={{ display: 'table', margin: '0 auto' }}>
+                                    <LazyLoadImage
+                                        style={{ scale: '1.3' }}
+                                        height="250px"
+                                        alt="Product_image"
+                                        effect="blur"
+                                        src={product?.product_image} />
+
+                                </div>
+
+                            </Carousel.Slide>
+                        </Carousel>
+
+                }
+
             </Card.Section>
 
 

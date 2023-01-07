@@ -9,8 +9,6 @@ import { Product_list } from 'components/Product/Product_list';
 const cart = () => {
 
     const ProductInCarts = useSelector((state) => state.cartItems.carts);
-    const products = Object.keys(ProductInCarts);
-    console.log(products , ProductInCarts);
 
     return (
         <Layout>
