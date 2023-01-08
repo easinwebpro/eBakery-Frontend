@@ -73,18 +73,30 @@ export const cartSlice = createSlice({
                 setItemsStorage('cart_items', state.carts);
             }
 
-
         },
 
         calculateUniqueItems: (state, action) => {
             const uniqueItemsInCart = Object.keys(state.carts).length;
             state.uniqueItems = uniqueItemsInCart;
-        }
+        },
+
+        // calculateTotals: (state, action) => {
+        //     console.log('HelloX',state.carts);
+
+        //     const items = Object.keys(state.carts);
+        //     if (!items)  return false;
+        //     const total = 0;
+        //     items.map((item_key) => { 
+        //         total += state.carts[item_key]?.price * state.carts[item_key].quantity
+        //     });
+        //     console.log('stateX',total);
+        //     state.sub_total = total;
+        // }
 
     },
 })
 
 // Action creators are generated for each case reducer function
-export const { addCartItem, checkItemInCart, removeItemToCart, addItemWithQuantity, removeItemQuantity, calculateUniqueItems } = cartSlice.actions;
+export const { addCartItem, checkItemInCart, removeItemToCart, addItemWithQuantity, removeItemQuantity, calculateUniqueItems , calculateTotals} = cartSlice.actions;
 
 export default cartSlice.reducer;
