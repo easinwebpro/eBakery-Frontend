@@ -4,6 +4,7 @@ import { Group, Text } from '@mantine/core';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 import { CartCounter } from '../AddToCart/cart-counter';
 import { IconX } from '@tabler/icons';
+import { Product_Checkout } from './Product_Checkout';
 
 export const Product_Cart = ({ products }) => {
 
@@ -46,7 +47,7 @@ export const Product_Cart = ({ products }) => {
                                         ৳ {products[product_Id]?.quantity * products[product_Id]?.price}
                                     </Text>
                                     <div className={classes.cart_counter}>
-                                        <CartCounter product={products[product_Id]} paddingStyle={{padding:'0px 5px'}} qty_padding={{padding:'0px 5px'}}/>
+                                        <CartCounter product={products[product_Id]} paddingStyle={{ padding: '0px 5px' }} qty_padding={{ padding: '0px 5px' }} />
                                     </div>
                                 </div>
 
@@ -62,12 +63,13 @@ export const Product_Cart = ({ products }) => {
 
 
                         </div>
-
                     </div >
                 )) : (
                     <h2>Cart Empty</h2>
                 )
             }
+
+            <Product_Checkout />
 
         </div>
     )
