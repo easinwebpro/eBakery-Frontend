@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { createStyles, Table, Checkbox, ScrollArea, Group, Avatar, Text, Center, Space } from '@mantine/core';
+import { createStyles, Table, Checkbox, ScrollArea, Group, Avatar, Text, Center, Space, Grid } from '@mantine/core';
 import { useMediaQuery } from '@mantine/hooks';
 import { CartCounter } from '../AddToCart/cart-counter';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
@@ -7,6 +7,7 @@ import { IconX } from '@tabler/icons';
 import { useDispatch } from 'react-redux';
 import { removeItemToCart } from 'store/cartSlice';
 import { Product_Cart } from '../Product_Cart';
+import { Product_Checkout } from '../Product_Cart/Product_Checkout';
 
 const useStyles = createStyles((theme) => ({
     rowSelected: {
@@ -33,57 +34,94 @@ export const Product_list = ({ products }) => {
     // const rows = 
 
     return (
-        <ScrollArea>
 
+        <div>
             {
-                !matches ? <Table sx={{ minWidth: 800 }} verticalSpacing="sm">
-                    <thead>
-                        <tr>
-                            <th>
+                !matches ?
 
-                            </th>
-                            <th><div style={{ marginLeft: '100px' }}><Text size="md" weight={700}>Product </Text></div></th>
-                            <th><Center><Text size="md" weight={700}> Price </Text> </Center></th>
-                            <th><Center><Text size="md" weight={700}> Quantity </Text> </Center></th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {
-                            productsKey.map((ProductId, ind) => {
+                    <Grid>
+                        <Grid.Col md={7} lg={9}>
+                            <ScrollArea style={{ height: '350px' }}>
+                                <Table sx={{ minWidth: 800 }} verticalSpacing="sm">
+                                    <thead>
+                                        <tr>
+                                            <th> </th>
+                                            <th>
+                                                 <div style={{ marginLeft: '100px' }}>
+                                                    <Text size="md" weight={700}>Product </Text>
+                                                </div>
+                                            </th>
+                                            <th><Center><Text size="md" weight={700}> Multi </Text> </Center></th>
+                                            <th><Center><Text size="md" weight={700}> Subtotal </Text> </Center></th>
+                                            <th><Center><Text size="md" weight={700}> Quantity </Text> </Center></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {
+                                            productsKey.map((ProductId, ind) => {
 
-                                return (
-                                    <tr key={ind} >
-                                        <td onClick={() => removeItemToCartHandler(ProductId)} style={{ cursor: 'pointer' }}>
-                                            <IconX size={20} stroke={4} color="red" />
-                                        </td>
-                                        <td>
-                                            <Group spacing="sm">
-                                                <LazyLoadImage
-                                                    style={{ borderRadius: '20px' }}
-                                                    width="100px"
-                                                    height="100px"
-                                                    object-fit="cover"
-                                                    radius='md'
-                                                    src={products[ProductId]?.product_image}
-                                                    effect="blur" />
+                                                return (
+                                                    <tr key={ind} >
+                                                        <td onClick={() => removeItemToCartHandler(ProductId)} style={{ cursor: 'pointer' }}>
+                                                            <IconX size={20} stroke={4} color="red" />
+                                                        </td>
+                                                        <td>
+                                                            <Group spacing="sm">
+                                                                <LazyLoadImage
+                                                                    style={{ borderRadius: '20px' }}
+                                                                    width="100px"
+                                                                    height="100px"
+                                                                    object-fit="cover"
+                                                                    radius='md'
+                                                                    src={products[ProductId]?.product_image}
+                                                                    effect="blur" />
 
-                                                <Text size="sm" weight={700}>
-                                                    {products[ProductId]?.title}
-                                                </Text>
-                                            </Group>
-                                        </td>
-                                        <td><Center> <Text size="sm" weight={700}>{products[ProductId]?.price} </Text> </Center></td>
-                                        <td style={{ width: 140 }}><Center><CartCounter product={products[ProductId]} /> </Center></td>
-                                    </tr>
-                                );
-                            })
+                                                                <Text size="sm" weight={700}>
+                                                                    {products[ProductId]?.title}
+                                                                </Text>
+                                                            </Group>
+                                                        </td>
+                                                        <td>
+                                                            <Center> 
+                                                                <Text size="sm" weight={700}>
+                                                                    {
+                                                                    `${products[ProductId]?.price} x ${products[ProductId]?.quantity}`
+                                                                    } 
+                                                                </Text> 
+                                                            </Center>
+                                                        </td>
+                                                        <td>
+                                                            <Center> 
+                                                                <Text size="sm" weight={700}>
+                                                                    {products[ProductId]?.price * products[ProductId]?.quantity} 
+                                                                </Text> 
+                                                            </Center>
+                                                        </td>
+                                                        <td style={{ width: 140 }}>
+                                                            <Center>
+                                                                <CartCounter product={products[ProductId]} /> 
+                                                            </Center>
+                                                        </td>
+                                                    </tr>
+                                                );
+                                            })
 
-                        }</tbody>
-                </Table> :
+                                        }</tbody>
+                                </Table>
+                            </ScrollArea>
+                        </Grid.Col>
+
+                        <Grid.Col md={5} lg={3}>
+                            <Product_Checkout/>
+                        </Grid.Col>
+
+                    </Grid>
+
+                    :
 
                     <Product_Cart products={products} />
             }
 
-        </ScrollArea>
+        </div>
     );
 }
