@@ -2,9 +2,8 @@ import React from 'react';
 import { useSelector, useDispatch } from 'react-redux'
 import { Grid } from '@mantine/core';
 import Layout from 'components/Layout/Layout';
-import { Product } from 'components/Product';
 import { Toaster } from 'react-hot-toast';
-import { Product_list } from 'components/Product/Product_list';
+import { Cart } from 'components/Cart';
 
 const cart = () => {
 
@@ -23,7 +22,7 @@ const cart = () => {
                     ))
                 }
             </Grid> */}
-             <Product_list products={ProductInCarts}/>
+             <Cart products={ProductInCarts}/>
 
         </Layout>
     )
