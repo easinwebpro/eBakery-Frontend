@@ -2,11 +2,11 @@ import React from 'react';
 import { useStyles } from './product_cart.style';
 import { Group, Text } from '@mantine/core';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
-import { CartCounter } from '../AddToCart/cart-counter';
 import { IconX } from '@tabler/icons';
-import { Product_Checkout } from './Product_Checkout';
+import { CartCounter } from 'components/Product/AddToCart/cart-counter';
+import { Product_Checkout } from '../Product_Checkout';
 
-export const Product_Cart = ({ products }) => {
+export const Product_Mobile_V = ({ products }) => {
 
     const Products_Key = Object.keys(products);
     const { classes } = useStyles();
@@ -15,7 +15,7 @@ export const Product_Cart = ({ products }) => {
     return (
         <div>
             {
-                products ? Products_Key.map((product_Id) => (
+                products && Products_Key.map((product_Id) => (
                     <div key={product_Id} className={classes.cart_area_wrapper}>
 
                         <div className={classes.image_wrapper}>
@@ -64,9 +64,7 @@ export const Product_Cart = ({ products }) => {
 
                         </div>
                     </div >
-                )) : (
-                    <h2>Cart Empty</h2>
-                )
+                ))
             }
 
             <Product_Checkout />

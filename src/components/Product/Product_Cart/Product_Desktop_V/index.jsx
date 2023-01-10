@@ -6,8 +6,8 @@ import { LazyLoadImage } from 'react-lazy-load-image-component';
 import { IconX } from '@tabler/icons';
 import { useDispatch } from 'react-redux';
 import { removeItemToCart } from 'store/cartSlice';
-import { Product_Cart } from '../Product_Cart';
 import { Product_Checkout } from '../Product_Checkout';
+import { Product_Mobile_V } from '../Product_Mobile_V';
 
 const useStyles = createStyles((theme) => ({
     rowSelected: {
@@ -18,7 +18,7 @@ const useStyles = createStyles((theme) => ({
     },
 }));
 
-export const Product_list = ({ products }) => {
+export const Product_Desktop_V = ({ products }) => {
 
     const dispatch = useDispatch();
     const matches = useMediaQuery('(max-width: 766px)');
@@ -119,7 +119,7 @@ export const Product_list = ({ products }) => {
 
                     :
 
-                    <Product_Cart products={products} />
+                    <Product_Mobile_V products={products} />
             }
 
         </div>
