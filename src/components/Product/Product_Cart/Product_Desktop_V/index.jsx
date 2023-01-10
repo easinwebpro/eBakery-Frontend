@@ -1,13 +1,13 @@
 import { useState } from 'react';
 import { createStyles, Table, Checkbox, ScrollArea, Group, Avatar, Text, Center, Space, Grid } from '@mantine/core';
 import { useMediaQuery } from '@mantine/hooks';
-import { CartCounter } from '../AddToCart/cart-counter';
+import { CartCounter } from '../../AddToCart/cart-counter';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 import { IconX } from '@tabler/icons';
 import { useDispatch } from 'react-redux';
 import { removeItemToCart } from 'store/cartSlice';
 import { Product_Cart } from '../Product_Cart';
-import { Product_Checkout } from '../Product_Cart/Product_Checkout';
+import { Product_Checkout } from '../Product_Checkout';
 
 const useStyles = createStyles((theme) => ({
     rowSelected: {
